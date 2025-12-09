@@ -1,0 +1,19 @@
+name: BLA BLA BLA BLA
+
+on:
+  push:
+    branches:
+      - master
+      - feature/logs
+
+#какие задачи нужно сделать,для этого нужна jobs
+jobs:
+  # Название задачи, то есть место где находяться задачи
+  built-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      
