@@ -15,5 +15,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       
+      - name: Test
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: test_in_use
+        run : python test.py
