@@ -21,4 +21,8 @@ jobs:
         with:
           python-version: '3.13'
       - name: test_in_use
-        run : python test.py
+        run: python test.py
+      
+      - name: docker image
+        run: docker build -t wjfwiejfe .
+      - run: docker run wjfwiejfe
