@@ -9,7 +9,7 @@ on:
 #какие задачи нужно сделать,для этого нужна jobs
 jobs:
   # Название задачи, то есть место где находяться задачи
-  built-test:
+  build-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,20 @@ jobs:
       - name: test_in_use
         run: python test.py
       
+      - name: docker login password
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: docker image
-        run: docker build -t wjfwiejfe .
-      - run: docker run wjfwiejfe
+        run: docker build -t bla001 .
+
+      - run: docker run bla001
+
+      - name: docker push
+        run: |
+          docker tag bla001 tachyonk/boom:latest
+          docker tag bla001 tachyonk/boom:${{ github.sha }}
+          docker push tachyonk/boom:latest
+          docker push tachyonk/boom:${{ github.sha }}
