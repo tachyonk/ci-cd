@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - feature/logs
 
 #какие задачи нужно сделать,для этого нужна jobs
 jobs:
