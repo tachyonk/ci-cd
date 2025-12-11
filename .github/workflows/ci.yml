@@ -32,7 +32,6 @@ jobs:
       - name: docker image
         run: docker build -t bla001 .
 
-      - run: docker run -p 80:80 bla001
 
       - name: docker push
         run: |
