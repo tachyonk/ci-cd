@@ -48,6 +48,8 @@ jobs:
           script: |
             sudo dnf update -y
             sudo dnf install docker -y
+            sudo systemctl stop nginx || true
+            sudo systemctl disable nginx || true
             sudo systemctl start docker
             sudo systemctl enable docker
             sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
