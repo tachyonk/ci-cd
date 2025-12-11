@@ -48,10 +48,9 @@ jobs:
           script: |
             sudo dnf update -y
             sudo dnf install docker -y
-            sudo docker stop tachyonk/boom:latest
-            sudo docker rm tachyonk/boom:latest
-            sudo systemctl stop nginx || true
-            sudo systemctl disable nginx || true
+            sudo docker stop $(sudo docker ps -aq) || true
+            sudo docker rm $(sudo docker ps -aq) || true
+            sudo docker rmi $(sudo docker images -q) -f || true
             sudo systemctl start docker
             sudo systemctl enable docker
             sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
